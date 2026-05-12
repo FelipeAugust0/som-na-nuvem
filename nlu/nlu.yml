@@ -1,0 +1,204 @@
+version: "3.1"
+
+nlu:
+
+  - intent: saudacao
+    examples: |
+      - olá
+      - oi
+      - oi tudo bem
+      - olá, preciso de ajuda
+      - bom dia
+      - boa tarde
+      - boa noite
+      - hey
+      - e aí
+      - oi, pode me ajudar?
+      - preciso de suporte
+      - quero ajuda
+
+  - intent: despedida
+    examples: |
+      - tchau
+      - até logo
+      - obrigado, tchau
+      - encerrar atendimento
+      - foi isso, obrigado
+      - valeu, até mais
+      - pode encerrar
+      - não preciso de mais nada
+
+  - intent: relatar_problema_acesso
+    examples: |
+      - não consigo acessar minha conta
+      - não consigo fazer login
+      - esqueci minha senha
+      - minha senha não funciona
+      - conta bloqueada
+      - não estou conseguindo entrar no app
+      - meu login está recusando
+      - [não consigo acessar minha conta](problema)
+      - [esqueci a senha](problema)
+      - [conta bloqueada](problema)
+      - não lembro minha senha
+      - meu acesso foi bloqueado
+      - erro de autenticação
+      - minha conta foi hackeada
+      - não reconhece meu e-mail
+      - o sistema não aceita meu login
+      - [problema de acesso](problema)
+      - senha incorreta mesmo digitando certo
+      - recebi uma mensagem de conta suspensa
+      - não consigo entrar na minha conta de jeito nenhum
+      - acesso à conta não está funcionando
+
+  - intent: relatar_problema_plano
+    examples: |
+      - quero mudar meu plano
+      - quero ver os planos disponíveis
+      - quais são os planos?
+      - quero fazer upgrade
+      - quero fazer downgrade
+      - quero assinar o plano família
+      - quanto custa o plano premium?
+      - [quero mudar meu plano](problema)
+      - [mudança de plano](problema)
+      - [informações sobre planos](problema)
+      - quero o plano estudante
+      - como adicionar membros à minha assinatura?
+      - meu plano não está correto
+      - fui cobrado errado no plano
+      - qual a diferença entre os planos?
+      - quero assinar o plano anual
+      - como funciona o período de teste?
+      - quero adicionar uma conta extra
+      - [upgrade de assinatura](problema)
+      - posso ter mais de um perfil?
+      - quero reduzir meu plano
+
+  - intent: relatar_problema_app
+    examples: |
+      - o aplicativo não funciona
+      - o app trava
+      - app não abre
+      - o aplicativo fecha sozinho
+      - erro no app
+      - [o aplicativo não funciona](problema)
+      - [falha no app](problema)
+      - [erro no aplicativo](problema)
+      - não consigo abrir o app
+      - o aplicativo está lento
+      - a música para de tocar sozinha
+      - não carrega as músicas
+      - o app diz que estou offline mas tenho internet
+      - problema com o aplicativo no celular
+      - app travado na tela de carregamento
+      - não consigo baixar músicas para ouvir offline
+      - o app desconecta sem parar
+      - bug no aplicativo
+      - o app do som na nuvem não funciona no meu celular
+      - tela preta no app
+      - [problemas técnicos no app](problema)
+
+  - intent: relatar_cancelamento
+    examples: |
+      - quero cancelar minha assinatura
+      - cancelar minha conta
+      - quero encerrar meu plano
+      - como cancelo minha assinatura?
+      - [cancelamento de assinatura](problema)
+      - [cancelar conta](problema)
+      - quero parar de assinar
+      - não quero mais pagar
+      - como faço para cancelar?
+      - quero desativar minha conta
+      - encerrar assinatura
+      - quero sair do som na nuvem
+
+  - intent: relatar_conteudo_ausente
+    examples: |
+      - minha música favorita sumiu
+      - uma playlist desapareceu
+      - não encontro um álbum que estava aqui antes
+      - [conteúdo ausente](problema)
+      - [música sumiu](problema)
+      - [playlist desapareceu](problema)
+      - um artista sumiu do catálogo
+      - minha playlist foi deletada
+      - as músicas que baixei sumiram
+      - não acho mais uma música específica
+      - o conteúdo que eu adicionei desapareceu
+      - meus downloads foram apagados
+      - não encontro mais meu podcast favorito
+
+  - intent: relatar_problema_pagamento
+    examples: |
+      - estou sendo cobrado errado
+      - meu cartão foi recusado
+      - não consigo pagar minha assinatura
+      - [problema de pagamento](problema)
+      - [cobrança indevida](problema)
+      - fui cobrado duas vezes
+      - como atualizo meu cartão?
+      - meu boleto não está gerando
+      - quero trocar a forma de pagamento
+      - problemas com a fatura
+      - não reconheço uma cobrança na minha fatura
+      - pagamento recusado
+      - como parcelar minha assinatura?
+
+  - intent: solicitar_atendente_humano
+    examples: |
+      - quero falar com um atendente
+      - prefiro falar com uma pessoa
+      - atendimento humano
+      - me conecte com um atendente
+      - quero suporte humano
+      - falar com suporte
+      - não quero falar com robô
+      - preciso de um atendente real
+      - transferir para atendente
+      - me coloca pra falar com alguém
+
+  - intent: confirmar_resolucao
+    examples: |
+      - sim, resolveu
+      - deu certo
+      - funcionou
+      - sim
+      - resolvido
+      - consegui
+      - era isso mesmo, obrigado
+      - problema resolvido
+      - deu certo, valeu
+      - sim, consegui acessar
+
+  - intent: negar_resolucao
+    examples: |
+      - não resolveu
+      - continua com o problema
+      - ainda não funciona
+      - não
+      - não deu certo
+      - não funcionou
+      - ainda está com erro
+      - continua do mesmo jeito
+      - não adiantou
+      - não consegui resolver
+
+  - intent: agradecimento
+    examples: |
+      - obrigado
+      - obrigada
+      - valeu
+      - muito obrigado
+      - grato
+      - agradeço a ajuda
+
+  - intent: fora_do_escopo
+    examples: |
+      - qual a previsão do tempo?
+      - me conta uma piada
+      - o que é inteligência artificial?
+      - como está o câmbio?
+      - me recomenda um restaurante

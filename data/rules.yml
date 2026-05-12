@@ -1,0 +1,45 @@
+version: "3.1"
+
+rules:
+
+  - rule: responder saudacao
+    steps:
+      - intent: saudacao
+      - action: utter_saudacao
+
+  - rule: responder despedida
+    steps:
+      - intent: despedida
+      - action: utter_despedida
+
+  - rule: escalar para atendente humano quando solicitado
+    steps:
+      - intent: solicitar_atendente_humano
+      - action: action_escalar_atendente
+
+  - rule: cancelamento requer atendente humano
+    steps:
+      - intent: relatar_cancelamento
+      - action: action_fornecer_suporte
+      - action: action_escalar_atendente
+
+  - rule: problema de pagamento requer atendente humano
+    steps:
+      - intent: relatar_problema_pagamento
+      - action: action_fornecer_suporte
+      - action: action_escalar_atendente
+
+  - rule: responder agradecimento
+    steps:
+      - intent: agradecimento
+      - action: utter_agradecimento
+
+  - rule: mensagem fora do escopo
+    steps:
+      - intent: fora_do_escopo
+      - action: utter_fora_do_escopo
+
+  - rule: fallback nlu baixa confianca
+    steps:
+      - intent: nlu_fallback
+      - action: utter_fora_do_escopo

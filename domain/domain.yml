@@ -1,0 +1,133 @@
+version: "3.1"
+
+entities:
+  - problema
+
+slots:
+  problema:
+    type: categorical
+    values:
+      - acesso_conta
+      - mudanca_plano
+      - falha_app
+      - cancelamento
+      - conteudo_ausente
+      - problema_pagamento
+      - outro
+    mappings:
+      - type: from_entity
+        entity: problema
+
+  problema_resolvido:
+    type: bool
+    mappings:
+      - type: from_intent
+        intent: confirmar_resolucao
+        value: true
+      - type: from_intent
+        intent: negar_resolucao
+        value: false
+
+intents:
+  - saudacao
+  - despedida
+  - afirmar
+  - negar
+  - relatar_problema_acesso
+  - relatar_problema_plano
+  - relatar_problema_app
+  - relatar_cancelamento
+  - relatar_conteudo_ausente
+  - relatar_problema_pagamento
+  - solicitar_atendente_humano
+  - confirmar_resolucao
+  - negar_resolucao
+  - agradecimento
+  - fora_do_escopo
+
+actions:
+  - action_fornecer_suporte
+  - action_escalar_atendente
+  - action_reiniciar_conversa
+
+responses:
+  utter_saudacao:
+    - text: |
+        Olá! Sou o **Cláudio**, assistente virtual do Som na Nuvem.
+        Estou aqui para te ajudar com qualquer dúvida ou problema.
+        
+        Como posso te ajudar hoje?
+      buttons:
+        - title: "Problema com acesso"
+          payload: /relatar_problema_acesso
+        - title: "Mudar meu plano"
+          payload: /relatar_problema_plano
+        - title: "Problema no aplicativo"
+          payload: /relatar_problema_app
+        - title: "Problema de pagamento"
+          payload: /relatar_problema_pagamento
+        - title: "Conteúdo ausente"
+          payload: /relatar_conteudo_ausente
+        - title: "Falar com atendente"
+          payload: /solicitar_atendente_humano
+
+  utter_despedida:
+    - text: "Foi um prazer te ajudar! Continue curtindo o Som na Nuvem. Até logo!"
+    - text: "Obrigado por entrar em contato! Qualquer dúvida, estou aqui. Tchau!"
+
+  utter_agradecimento:
+    - text: "Fico feliz em ter ajudado!"
+    - text: "Disponha! Estou aqui sempre que precisar."
+
+  utter_perguntar_problema_resolvido:
+    - text: |
+        Essas informações ajudaram a resolver seu problema?
+      buttons:
+        - title: "Sim, resolvido!"
+          payload: /confirmar_resolucao
+        - title: "Não resolveu"
+          payload: /negar_resolucao
+
+  utter_problema_resolvido:
+    - text: "Ótimo! Fico feliz que o problema foi resolvido. Aproveite o Som na Nuvem!"
+
+  utter_problema_nao_resolvido:
+    - text: |
+        Lamento que não tenha conseguido resolver. 
+        Vou te conectar com um atendente humano para um suporte mais detalhado.
+
+  utter_solicitar_descricao_problema:
+    - text: |
+        Pode me descrever com mais detalhes o que está acontecendo?
+        Por exemplo: "não consigo fazer login", "o app trava ao abrir" etc.
+
+  utter_fora_do_escopo:
+    - text: |
+        Desculpe, não entendi bem sua solicitação.
+        Posso ajudar com problemas de acesso, planos, aplicativo, pagamento ou conteúdo.
+        
+        Pode reformular ou escolher uma das opções abaixo?
+      buttons:
+        - title: "Acesso à conta"
+          payload: /relatar_problema_acesso
+        - title: "Planos"
+          payload: /relatar_problema_plano
+        - title: "Aplicativo"
+          payload: /relatar_problema_app
+        - title: "Falar com atendente"
+          payload: /solicitar_atendente_humano
+
+  utter_escalar_atendente:
+    - text: |
+        Vou te conectar com um dos nossos atendentes agora.
+        
+        Tempo estimado de espera: **~3 minutos**
+        
+        Enquanto isso, prepare as seguintes informações:
+        • E-mail cadastrado na conta
+        • Descrição detalhada do problema
+        • Dispositivo que está usando
+
+session_config:
+  session_expiration_time: 60    # minutos
+  carry_over_slots_to_new_session: false

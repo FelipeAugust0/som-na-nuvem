@@ -1,0 +1,69 @@
+version: "3.1"
+
+stories:
+
+  - story: TESTE acesso conta resolvido
+    steps:
+      - intent: saudacao
+      - action: utter_saudacao
+      - intent: relatar_problema_acesso
+        entities:
+          - problema: acesso_conta
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: confirmar_resolucao
+      - action: utter_problema_resolvido
+      - action: utter_despedida
+
+  - story: TESTE acesso nao resolvido escalamento
+    steps:
+      - intent: relatar_problema_acesso
+        entities:
+          - problema: acesso_conta
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: negar_resolucao
+      - action: utter_problema_nao_resolvido
+      - action: action_escalar_atendente
+
+  - story: TESTE consulta planos completa
+    steps:
+      - intent: relatar_problema_plano
+        entities:
+          - problema: mudanca_plano
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: confirmar_resolucao
+      - action: utter_problema_resolvido
+
+  - story: TESTE cancelamento escala diretamente
+    steps:
+      - intent: relatar_cancelamento
+        entities:
+          - problema: cancelamento
+      - action: action_fornecer_suporte
+      - action: action_escalar_atendente
+
+  - story: TESTE solicitacao direta atendente
+    steps:
+      - intent: solicitar_atendente_humano
+      - action: action_escalar_atendente
+
+  - story: TESTE fora do escopo
+    steps:
+      - intent: fora_do_escopo
+      - action: utter_fora_do_escopo
+
+  - story: TESTE app problema resolvido
+    steps:
+      - intent: saudacao
+      - action: utter_saudacao
+      - intent: relatar_problema_app
+        entities:
+          - problema: falha_app
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: confirmar_resolucao
+      - action: utter_problema_resolvido
+      - intent: despedida
+      - action: utter_despedida

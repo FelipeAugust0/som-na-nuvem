@@ -1,0 +1,121 @@
+version: "3.1"
+
+stories:
+
+  - story: acesso conta resolvido com sucesso
+    steps:
+      - intent: saudacao
+      - action: utter_saudacao
+      - intent: relatar_problema_acesso
+        entities:
+          - problema: acesso_conta
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: confirmar_resolucao
+      - action: utter_problema_resolvido
+      - action: utter_despedida
+
+  - story: acesso conta nao resolvido escalamento humano
+    steps:
+      - intent: saudacao
+      - action: utter_saudacao
+      - intent: relatar_problema_acesso
+        entities:
+          - problema: acesso_conta
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: negar_resolucao
+      - action: utter_problema_nao_resolvido
+      - action: action_escalar_atendente
+
+  - story: consulta sobre planos
+    steps:
+      - intent: saudacao
+      - action: utter_saudacao
+      - intent: relatar_problema_plano
+        entities:
+          - problema: mudanca_plano
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: confirmar_resolucao
+      - action: utter_problema_resolvido
+      - action: utter_despedida
+
+  - story: problema app resolvido
+    steps:
+      - intent: relatar_problema_app
+        entities:
+          - problema: falha_app
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: confirmar_resolucao
+      - action: utter_problema_resolvido
+      - action: utter_despedida
+
+  - story: problema app escalamento
+    steps:
+      - intent: relatar_problema_app
+        entities:
+          - problema: falha_app
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: negar_resolucao
+      - action: utter_problema_nao_resolvido
+      - action: action_escalar_atendente
+
+  - story: cancelamento de assinatura
+    steps:
+      - intent: saudacao
+      - action: utter_saudacao
+      - intent: relatar_cancelamento
+        entities:
+          - problema: cancelamento
+      - action: action_fornecer_suporte
+      - action: action_escalar_atendente
+
+  - story: conteudo ausente resolvido
+    steps:
+      - intent: relatar_conteudo_ausente
+        entities:
+          - problema: conteudo_ausente
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: confirmar_resolucao
+      - action: utter_problema_resolvido
+
+  - story: problema pagamento
+    steps:
+      - intent: relatar_problema_pagamento
+        entities:
+          - problema: problema_pagamento
+      - action: action_fornecer_suporte
+      - action: action_escalar_atendente
+
+  - story: solicitar atendente humano direto
+    steps:
+      - intent: saudacao
+      - action: utter_saudacao
+      - intent: solicitar_atendente_humano
+      - action: action_escalar_atendente
+
+  - story: inicio direto com problema
+    steps:
+      - intent: relatar_problema_acesso
+        entities:
+          - problema: acesso_conta
+      - action: action_fornecer_suporte
+      - action: utter_perguntar_problema_resolvido
+      - intent: confirmar_resolucao
+      - action: utter_problema_resolvido
+
+  - story: mensagem fora do escopo
+    steps:
+      - intent: fora_do_escopo
+      - action: utter_fora_do_escopo
+
+  - story: agradecimento e despedida
+    steps:
+      - intent: agradecimento
+      - action: utter_agradecimento
+      - intent: despedida
+      - action: utter_despedida
