@@ -23,17 +23,6 @@ Chatbot inteligente de suporte ao assinante da plataforma de streaming de músic
 
 A equipe de suporte do Som na Nuvem estava sobrecarregada com consultas repetitivas de assinantes. Este chatbot automatiza o atendimento de **primeiro nível**, identificando o problema do usuário, fornecendo soluções passo a passo e escalando para atendentes humanos quando necessário.
 
-### Benefícios
-
-| Métrica | Impacto Esperado |
-|---|---|
-| Tempo de espera | Redução de até 70% |
-| Disponibilidade | 24h/7 dias por semana |
-| Resolução automática | ~65% dos casos |
-| Satisfação do cliente | Aumento estimado de 40% |
-
----
-
 ## Arquitetura
 
 ```
@@ -55,6 +44,7 @@ Usuário
    │
    └──► Escalamento ──► Atendente Humano (fila)
 ```
+---
 
 ### Componentes principais
 
@@ -63,15 +53,6 @@ Usuário
 - **Action `action_fornecer_suporte`** — consulta a base de dados e decide entre solução automática ou escalamento
 
 ---
-
-## Funcionalidades
-
-- [x] Identificação de problemas por linguagem natural
-- [x] Soluções passo a passo para problemas comuns
-- [x] Informações sobre planos e preços
-- [x] Encaminhamento automático para atendente humano
-- [x] Fallback inteligente para perguntas não reconhecidas
-- [x] Suporte a múltiplas formas de descrever o mesmo problema
 
 ### Problemas suportados
 
@@ -130,8 +111,8 @@ som-na-nuvem-chatbot/
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/som-na-nuvem-chatbot.git
-cd som-na-nuvem-chatbot
+git clone https://github.com/FelipeAugust0/som-na-nuvem.git
+cd som-na-nuvem
 
 # 2. Crie e ative o ambiente virtual
 python -m venv venv
@@ -175,27 +156,6 @@ Envie requisições POST para `http://localhost:5005/webhooks/rest/webhook`:
   "sender": "usuario_123",
   "message": "não consigo acessar minha conta"
 }
-```
-
-### Exemplos de conversa
-
-```
-Usuário: Olá
-Bot:     Olá! Sou o Cláudio, assistente do Som na Nuvem. Como posso ajudar?
-
-Usuário: Não consigo fazer login na minha conta
-Bot:     Entendi! Vou te ajudar a recuperar o acesso.
-         Siga os passos:
-         1. Acesse som-na-nuvem.com e clique em "Entrar"
-         2. Clique em "Esqueci minha senha"
-         3. Digite seu e-mail cadastrado
-         4. Verifique sua caixa de entrada (incluindo spam)
-         5. Clique no link e crie uma nova senha
-         Isso resolveu?
-
-Usuário: Não resolveu
-Bot:     Sem problemas! Vou te conectar com um atendente.
-         Tempo estimado: ~3 minutos.
 ```
 
 ---
